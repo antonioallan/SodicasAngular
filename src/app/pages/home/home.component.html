@@ -1,0 +1,58 @@
+<div>
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col mr-auto">
+                    <h3 class="display-5 text-white">
+                        Compartilhando Conhecimento
+                    </h3>
+                    <h3 class="h2 text-white">
+                        <small>conquistando o mundo.</small>
+                    </h3>
+                </div>
+                <div class="col ml-auto">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input class="form-control" name="titulo" ([ngModel])="dados.titulo" type="text" placeholder="Buscar uma dica">
+                                <span class="input-group-btn">
+                                    <button (click)="filtrar()" class="btn btn-primary">
+                                        <i class="fa fa-search"></i>
+                                        Buscar
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col mr-auto float-left">
+                            <div *ngIf="dados.tags" class="control">
+                                <span *ngFor="let tag of dados.tags" class="tag btn btn-light btn-sm mr-2 mb-2">
+                                    {{ tag.nome }}
+                                    <button style="margin-top: -3px; margin-left: 3px" (click)="removeTag(tag)" class="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-auto ml-auto float-right">
+                            <app-dropdown label="Selecione tags" [opcoes]="opcaoTags" [ativo]="false" (itemClicado)="selecionarTag($event)"></app-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let dica of dicas" class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <app-card-dica [dica]="dica"></app-card-dica>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 mx-auto mt-3">
+                <button (click)="mais()" class="btn btn-light">Mais Resultados</button>
+            </div>
+        </div>
+    </div>
+</div>

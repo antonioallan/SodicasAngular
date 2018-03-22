@@ -1,0 +1,13 @@
+<div class="card text-center card-avatar">
+  <div class="card-body">
+      <img [src]="autor.avatar" width="128" height="128" />
+      <h3 class="h3">{{ autor.nome }}</h3>
+      <p class="h5">@{{ autor.nickname }}</p>
+      <div class="row justify-content-md-center">
+          <app-rating [pontuacao]='autor.pontuacao'></app-rating>
+      </div>
+      <div class="card-text">
+          {{ autor.sobre }}
+      </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.message{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index : 99999999;
+    margin: 15px;
+    opacity: 0.9;
+}
+.prog{
+    height: 3px;
+}

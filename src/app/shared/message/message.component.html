@@ -1,0 +1,10 @@
+<div *ngIf="visible" class="message">
+  <div class="alert alert-dismissible {{ classeCss }}" role="alert">
+    <button type="button" (click)="close()" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ msg }}
+    <div class="progress-bar prog {{ classeProgress }}" role="progressbar" [ngStyle]="{ 'width.%': tempo }" [attr.aria-valuenow]="tempo"
+      aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>

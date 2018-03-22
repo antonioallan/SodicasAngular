@@ -1,0 +1,4 @@
+<ng-content></ng-content>
+<div *ngIf="hasError()" class="invalid-feedback">
+  <p *ngFor="let err of getErros()">{{ err }}</p>
+</div>

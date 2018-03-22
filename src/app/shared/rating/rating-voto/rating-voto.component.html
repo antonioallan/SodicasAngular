@@ -1,0 +1,6 @@
+<div class="row">
+  <span *ngFor="let r of rites" class="icon text-primary m-3" (click)="selecionar(r)">
+    <i class="fa fa-lg" [ngClass]="{'fa-star' : r <= rite, 'fa-star-o' : r > rite }"></i>
+  </span>
+  <button (click)="votar()" class="btn btn-dark btn-sm">Votar</button>
+</div>

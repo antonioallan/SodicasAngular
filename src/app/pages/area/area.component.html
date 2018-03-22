@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 bg-success">
+            <app-card-user [autor]="autor"></app-card-user>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="card card-div">
+                        <header class="card-header">
+                            Criar Dicas
+                        </header>
+                        <form #formDica="ngForm" class="card-body" novalidate>
+                            <div class="form-group">
+                                <label class="control-label">Titulo</label>
+                                <input name="dica.titulo" required [(ngModel)]="dica.titulo" 
+                                class="form-control" type="text" [class.is-invalid]="hasError('titulo')"
+                                placeholder="Informe o titulo pra sua dica">
+                                <div *ngIf="hasError('titulo')" class="invalid-feedback">Campo obrigatório</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Conteúdo</label>
+                                <textarea name="dica.conteudo" required
+                                [class.is-invalid]="hasError('conteudo')" 
+                                [(ngModel)]="dica.conteudo" class="form-control" 
+                                placeholder="Informe sua dica"></textarea>
+                                <div *ngIf="hasError('conteudo')" class="invalid-feedback">Campo obrigatório</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Tags
+                                    <button title="Nova Tag" modal modal="modalTag" acao="show"  class="btn btn-sm">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </label>
+                                <select name="dica.tags" [compareWith]="compareId" required class="form-control" [(ngModel)]="dica.tags" 
+                                [class.is-invalid]="hasError('tags')" multiple size="5">
+                                    <option *ngFor="let tag of tags" [ngValue]="tag">{{ tag.nome }}</option>
+                                </select>
+                                <div *ngIf="hasError('tags')" class="invalid-feedback">Campo obrigatório</div>
+                            </div>
+                            <div class="form-group">
+                                <button (click)="addDica()" class="btn btn-primary">Salvar</button>
+                                <button (click)="limparForm()" class="btn btn-link">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div *ngFor="let dica of dicas" class="card-div">
+                        <div class="content">
+                            <app-card-dica [dica]="dica">
+                                <div card-acao>
+                                    <button (click)="seleciona(dica)" title="alterar" class="btn btn-sm">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button modal modal="confirmacao" acao="show" (click)="seleciona(dica)" title="Remover" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </app-card-dica>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-modal name="modalTag">
+            <p header> Cadastrar Tag</p>
+            <div body>
+                <form #formTag="ngForm" class="form-group" novalidate>
+                    <label class="control-label">Nome</label>
+                    <input [(ngModel)]="tag.nome" name="tag.nome" class="form-control" type="text" placeholder="Informe o nome da tag" />
+                </form>
+            </div>
+            <div footer>
+                <div class="form-group">
+                    <button modal modal="modalTag" acao="hide" (click)="addTag()" class="btn btn-primary">Salvar</button>
+                    <button modal modal="modalTag" acao="hide" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
+        </app-modal>
+        <app-modal name="confirmacao">
+            <p header>Confirmação</p>
+            <div body>
+                <p>Este procedimento removerá esta dica de nossa base de dados, deseja realizar esta operação?</p>
+            </div>
+            <div footer>
+                <div class="form-group">
+                    <button modal modal="confirmacao" acao="hide" (click)="remove()" class="btn btn-info">OK</button>
+                    <button modal modal="confirmacao" acao="hide" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
+        </app-modal>
+    </div>
+</div>

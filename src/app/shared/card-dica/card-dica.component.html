@@ -1,0 +1,34 @@
+<div class="card card-div pb-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h3 class="h3">{{ dica.titulo }}</h3>
+        <p *ngIf="dica.autor" class="display-5">
+          {{ dica.autor.nickname }}
+        </p>
+      </div>
+      <div class="col ml-auto">
+        <span *ngFor="let tag of dica.tags" class="tag btn btn-info btn-sm m-1">{{ tag.nome }}</span>
+      </div>
+    </div>
+    <p class="card-text">
+      {{ resumo }}
+    </p>
+    <div class="row">
+      <div class="col mr-auto">
+        <app-rating [pontuacao]='dica.pontuacao'></app-rating>
+      </div>
+      <div class="col ml-auto">
+        <p class="text-right">{{ dica.data | date:'dd/MM/yyyy' }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mr-auto">
+        <a [routerLink]="['/dica', dica.id]">Ver Mais</a>
+      </div>
+    </div>
+    <div class="row">
+      <ng-content select="[card-acao]" class="columns"></ng-content>
+    </div>
+  </div>
+</div>

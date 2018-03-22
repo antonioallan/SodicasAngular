@@ -1,0 +1,51 @@
+<div class="card card-div">
+  <div class="card-header bg-success text-white">
+    Cadastrar
+  </div>
+  <form #form="ngForm" class="card-body"  novalidate>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <i class="input-group-text fa fa-user"></i>
+        </span>
+        <input ngModel [disabled]="alterar" [class.is-invalid]="hasError('username')" name="username" required class="form-control" type="text" placeholder="username" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <i class="input-group-text fa fa-envelope"></i>
+        </span>
+        <input ngModel name="email" class="form-control" [class.is-invalid]="hasError('email')" required email type="email" placeholder="Email">
+        <span class="input-group-append">
+          <i class="input-group-text fa" [ngClass]="(hasError('email')) ? 'fa-exclamation-triangle' : 'fa-check'"></i>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <i class="input-group-text fa fa-lock"></i>
+        </span>
+        <input ngModel name="senha" [class.is-invalid]="hasError('senha')" required maxlength="8" minlength="4" class="form-control" (blur)="checarSenha(form)" type="password" placeholder="senha" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <i class="input-group-text fa fa-lock"></i>
+        </span>
+        <input class="form-control" ngModel name="confsenha" required (blur)="checarSenha(form)" [class.is-invalid]="!valid && hasError('confsenha')" type="password" placeholder="repetir senha"
+        />
+        <span class="input-group-append">
+          <i class="input-group-text fa" [class.fa-check]="valid" [class.fa-exclamation-triangle]="!valid && hasError('confsenha')" [class.is-invalid]="!valid && hasError('confsenha')"></i>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="botton" (click)="salvar()">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

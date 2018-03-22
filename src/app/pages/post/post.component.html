@@ -1,0 +1,39 @@
+<div class="jumbotron jumbotron-fluid bg-warning">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-9">
+              <h1 class="display-5">{{ dica.titulo }}</h1>
+              <h2 *ngIf="dica.autor" class="h5">
+                  by {{ dica.autor.nickname }}
+                  <small>{{ dica.dataFormatada }}</small>
+              </h2>
+              <div class="tags">
+                  <span *ngFor="let tag of dica.tags" class="btn btn-primary btn-sm m-2">{{ tag.nome }}</span>
+              </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-3">
+              <div class="text-center">
+                  <span class="tag btn btn-success btn-lg">{{ dica.pontuacao }}</span>
+              </div>
+              <app-rating-voto (votado)="computandoVoto($event)"></app-rating-voto>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-12">
+      <p class="text-justify">
+          {{ dica.conteudo }}
+      </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-6">
+      <app-card-comment *ngFor="let comment of comentarios"  [comment]="comment"></app-card-comment>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-6">
+      <app-form-comment (salvar)="addComentario($event)"></app-form-comment>
+  </div>
+</div>
+</div>

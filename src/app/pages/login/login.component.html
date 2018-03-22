@@ -1,0 +1,47 @@
+<div class="jumbotron jumbotron-fluid bg-secondary">
+    <div class="container">
+        <h3 class="display-5 text-white">
+            Sábio é aquele que partilha seus conhecimentos.
+        </h3>
+        <h3 class="h4 text-white">
+            <small>Édy Leonardo.</small>
+        </h3>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 mr-auto ml-auto">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Login
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <i class="fa fa-user input-group-text"></i>
+                            </div>
+                            <input class="form-control" [(ngModel)]="credencias.username" name="credencias.username" type="text" placeholder="username" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <i class="fa fa-lock input-group-text"></i>
+                            </div>
+                            <input class="form-control" [(ngModel)]="credencias.senha" name="credencias.senha" type="password" placeholder="senha" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button (click)="logando()" class="btn btn-primary">
+                            Entrar
+                        </button>
+                        <a [routerLink]="['/signup']" class="btn btn-link">
+                            Cadastrar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
